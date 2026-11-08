@@ -1,0 +1,726 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Botanical Pharma | Medicinal Plant Research</title>
+
+<style>
+:root {
+  --green:#174b35;
+  --deep:#103525;
+  --light:#edf4e9;
+  --gold:#d7b66b;
+  --text:#26382d;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--text);
+  background:#f8faf6;
+}
+header{
+  background:var(--deep);
+  color:white;
+  padding:18px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:15px;
+}
+.logo{font-size:25px;font-weight:bold}
+.logo span{color:#b9d99e}
+nav{display:flex;flex-wrap:wrap;gap:18px}
+nav a{
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+}
+nav a:hover{color:#d7e9b9}
+.hero{
+  min-height:470px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:white;
+  padding:60px 20px;
+  background:
+  linear-gradient(90deg,rgba(10,39,26,.88),rgba(10,39,26,.48)),
+  url("https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=1800&q=85") center/cover;
+}
+.hero-content{max-width:850px}
+.hero h1{font-size:48px;margin-bottom:20px}
+.hero p{font-size:18px;line-height:1.8;margin-bottom:28px}
+.btn{
+  display:inline-block;
+  background:#dcebc9;
+  color:#153b28;
+  padding:14px 24px;
+  border:0;
+  border-radius:7px;
+  text-decoration:none;
+  font-weight:bold;
+  cursor:pointer;
+}
+.btn:hover{background:#c5dda9}
+.section{padding:65px 7%}
+.section-title{
+  text-align:center;
+  color:var(--green);
+  font-size:31px;
+  margin-bottom:12px;
+}
+.section-subtitle{
+  text-align:center;
+  color:#718075;
+  line-height:1.7;
+  margin:0 auto 32px;
+  max-width:750px;
+}
+.search-box{
+  max-width:680px;
+  margin:0 auto 35px;
+  display:flex;
+  gap:10px;
+}
+input,textarea{
+  width:100%;
+  padding:14px;
+  border:1px solid #ccd8cb;
+  border-radius:8px;
+  font-size:15px;
+  outline:none;
+}
+input:focus,textarea:focus{border-color:#45845d}
+.search-box button,.send-btn{
+  background:var(--green);
+  color:white;
+  border:0;
+  border-radius:8px;
+  padding:13px 22px;
+  cursor:pointer;
+}
+.plant-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:25px;
+}
+.plant-card{
+  background:white;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 5px 22px #173d2912;
+  transition:.25s;
+}
+.plant-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 10px 25px #173d2920;
+}
+.plant-card img{
+  display:block;
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  background:#e6eee1;
+}
+.plant-info{padding:20px}
+.plant-info h3{
+  color:var(--green);
+  font-size:22px;
+  margin-bottom:8px;
+}
+.scientific{font-style:italic;color:#738174;margin-bottom:12px}
+.plant-info p{font-size:14px;line-height:1.7;margin:5px 0}
+.plant-info button{
+  margin-top:14px;
+  background:var(--green);
+  color:white;
+  border:0;
+  padding:12px 18px;
+  border-radius:7px;
+  cursor:pointer;
+}
+.image-credit{
+  display:block;
+  font-size:11px;
+  color:#718075;
+  padding:0 20px 12px;
+}
+.image-credit a{color:#497354}
+.details{
+  display:none;
+  background:white;
+  border:1px solid #e1e9df;
+  border-radius:13px;
+  padding:28px;
+  margin-top:30px;
+  line-height:1.8;
+  box-shadow:0 5px 20px #0000000c;
+}
+.details h3{color:var(--green);font-size:25px;margin-bottom:15px}
+.details p{margin:8px 0}
+.details button{
+  background:var(--green);
+  color:white;
+  padding:11px 18px;
+  border:0;
+  border-radius:7px;
+  margin-top:15px;
+  cursor:pointer;
+}
+.features-section{background:#eaf1e5}
+.feature-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:20px;
+}
+.feature{
+  background:white;
+  text-align:center;
+  padding:28px 20px;
+  border-radius:12px;
+}
+.feature .emoji{font-size:38px}
+.feature h3{color:var(--green);margin:14px 0}
+.feature p{font-size:14px;line-height:1.7;color:#6a796d}
+.chat-section{background:#f3f7ef}
+.chatbox{
+  max-width:760px;
+  margin:auto;
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  box-shadow:0 5px 25px #00000010;
+}
+.chat-heading{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:18px;
+}
+.bot-icon{
+  width:48px;height:48px;
+  border-radius:50%;
+  background:#e3efdc;
+  display:grid;
+  place-items:center;
+  font-size:25px;
+}
+.chat-heading h3{color:var(--green)}
+.chat-heading small{color:#78877b}
+#chatOutput{
+  min-height:220px;
+  max-height:380px;
+  overflow-y:auto;
+  background:#f3f7f0;
+  padding:17px;
+  border-radius:10px;
+  margin-bottom:15px;
+  line-height:1.7;
+  white-space:pre-wrap;
+}
+.chat-message{margin:10px 0}
+.chat-message b{color:var(--green)}
+.chat-input-row{display:flex;gap:10px}
+.send-btn{min-width:90px}
+.chat-note{font-size:12px;color:#78877b;margin-top:12px}
+.about-text{
+  max-width:850px;
+  margin:auto;
+  text-align:center;
+  line-height:1.9;
+  color:#5f7063;
+}
+footer{
+  background:var(--deep);
+  color:white;
+  text-align:center;
+  padding:35px 15px;
+  line-height:1.9;
+}
+footer a{color:#d8e8c7}
+footer small{color:#d0ddcf}
+@media(max-width:650px){
+  header{justify-content:center;text-align:center}
+  nav{justify-content:center;gap:12px}
+  .hero h1{font-size:34px}
+  .hero p{font-size:16px}
+  .search-box,.chat-input-row{flex-direction:column}
+  .search-box button,.send-btn{width:100%}
+  .section{padding:48px 5%}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🌿 Botanical <span>Pharma</span></div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#database">Plant Database</a>
+    <a href="#features">Research Features</a>
+    <a href="#assistant">AI Assistant</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h1>Explore the Science of Medicinal Plants</h1>
+    <p>
+      Discover Pakistani medicinal plants, botanical taxonomy,
+      phytochemical constituents and TLC fingerprints
+      through an interactive research platform.
+    </p>
+    <a class="btn" href="#database">Explore Plant Database</a>
+  </div>
+</section>
+
+<section class="section" id="database">
+  <h2 class="section-title">🌱 Medicinal Plant Database</h2>
+  <p class="section-subtitle">
+    Explore five selected medicinal plants with their botanical
+    classification, phytochemical profiles and research information.
+  </p>
+
+  <div class="search-box">
+    <input id="searchInput"
+      placeholder="Search plant, scientific name, family or compound..."
+      oninput="searchPlants()">
+    <button onclick="searchPlants()">Search</button>
+  </div>
+
+  <div class="plant-grid" id="plantGrid"></div>
+  <div class="details" id="plantDetails"></div>
+</section>
+
+<section class="section features-section" id="features">
+  <h2 class="section-title">Research Features</h2>
+  <p class="section-subtitle">
+    Bringing botanical knowledge and digital technology together.
+  </p>
+
+  <div class="feature-grid">
+    <div class="feature">
+      <div class="emoji">🌿</div>
+      <h3>Botanical Taxonomy</h3>
+      <p>Scientific names, plant families, orders and classification.</p>
+    </div>
+    <div class="feature">
+      <div class="emoji">🧪</div>
+      <h3>Phytochemical Screening</h3>
+      <p>Preliminary chemical tests and recorded observations.</p>
+    </div>
+    <div class="feature">
+      <div class="emoji">🔬</div>
+      <h3>TLC Fingerprinting</h3>
+      <p>Reported marker compounds and retention factor values.</p>
+    </div>
+    <div class="feature">
+      <div class="emoji">🤖</div>
+      <h3>Gemini AI Assistant</h3>
+      <p>Ask questions about medicinal plants and research concepts.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section chat-section" id="assistant">
+  <h2 class="section-title">🤖 Botanical Pharma AI</h2>
+  <p class="section-subtitle">
+    Your digital botanical research assistant. Ask questions
+    about medicinal plants, phytochemicals, taxonomy and TLC.
+  </p>
+
+  <div class="chatbox">
+    <div class="chat-heading">
+      <div class="bot-icon">🌿</div>
+      <div>
+        <h3>Botanical AI Assistant</h3>
+        <small>Powered by Gemini through your Apps Script</small>
+      </div>
+    </div>
+
+    <div id="chatOutput" aria-live="polite">
+      <div class="chat-message">
+        <b>Botanical AI:</b>
+        Welcome! Ask me about Neem, Moringa, Aloe vera,
+        Hibiscus, Ginger or medicinal plant research.
+      </div>
+    </div>
+
+    <div class="chat-input-row">
+      <input id="chatInput"
+        placeholder="Ask your botanical question..."
+        onkeydown="if(event.key==='Enter') sendMessage()">
+      <button class="send-btn" id="sendButton" onclick="sendMessage()">
+        Send
+      </button>
+    </div>
+
+    <p class="chat-note">
+      Educational research assistant. Verify scientific and
+      experimental information before academic or clinical use.
+    </p>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <h2 class="section-title">About Botanical Pharma</h2>
+  <p class="about-text">
+    Botanical Pharma is an educational digital platform developed
+    to organize information about selected Pakistani medicinal plants.
+    It brings together botanical taxonomy, phytochemical screening,
+    marker compounds and TLC fingerprint information.
+    <br><br>
+    <b>Our vision:</b> Connecting botanical knowledge with digital
+    technology to support medicinal plant education and research.
+  </p>
+</section>
+
+<footer>
+  <h2>🌿 Botanical Pharma</h2>
+  <p>Exploring Medicinal Plants Through Science</p>
+  <small>
+    Educational research resource. Not a substitute for
+    professional medical advice.
+  </small>
+  <br>
+  <small>© 2026 Botanical Pharma</small>
+</footer>
+
+<script>
+
+/* YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP */
+const BOTANICAL_API_URL =
+"https://script.google.com/macros/s/AKfycbzxGhEWTJBC9LyJSL7E6-d4x4l72wVDThmqLiA7wAEVUfhbdJk8c5rEur6r0IRnM_Hl/exec";
+
+
+/* MEDICINAL PLANT DATABASE */
+
+const plants = [
+
+{
+name:"Neem",
+scientific:"Azadirachta indica A. Juss.",
+family:"Meliaceae",
+order:"Sapindales",
+part:"Leaves",
+image:"https://cdn.salla.sa/pQYRdx/2cb980a4-fef6-4031-8983-c4b43dc7ad1f-994.994994995x1000-K8NrhK3fvfvz91mcJif4QHAUwKoqP1fPXKm9aYxd.jpg",
+imageCredit:"Neem leaf photograph",
+chemicals:["Alkaloids","Flavonoids","Tannins","Saponins","Terpenoids","Steroids","Phenols","Glycosides"],
+markers:["Azadirachtin","Nimbin","Other limonoids"],
+screening:"Project observations reported positive results for alkaloids, flavonoids, tannins, phenols, saponins, terpenoids and steroids.",
+tlc:"Silica gel plate; eight golden-yellow bands visualized using iodine vapour.",
+rf:"0.118, 0.152, 0.237, 0.254, 0.542, 0.711, 0.813 and 0.898."
+},
+
+{
+name:"Moringa",
+scientific:"Moringa oleifera Lam.",
+family:"Moringaceae",
+order:"Brassicales",
+part:"Leaves",
+image:"https://www.lifegate.it/app/uploads/2017/02/foglie-di-moringa.jpg",
+imageCredit:"Moringa leaf photograph",
+chemicals:["Flavonoids","Alkaloids","Tannins","Saponins","Terpenoids","Phenols","Glycosides"],
+markers:["Gallic acid","Quercetin","Rutin"],
+screening:"The comparative screening matrix recorded positive observations for alkaloids, flavonoids, tannins, phenols, saponins, terpenoids, steroids and cardiac glycosides. Cross-check the original laboratory record where results differ.",
+tlc:"Silica gel plate; gallic acid, quercetin and rutin reported as marker compounds.",
+rf:"Gallic acid 0.15; quercetin 0.45; rutin 0.19."
+},
+
+{
+name:"Aloe vera",
+scientific:"Aloe vera (L.) Burm.f.",
+family:"Asphodelaceae",
+order:"Asparagales",
+part:"Gel",
+image:"https://1.bp.blogspot.com/-DRUV0tF1kd0/WYWWUQFd9QI/AAAAAAAAGFw/BD3NVdZjbjkQ4wPUSTOfRRmTvKTjG4GUQCLcBGAs/s1600/Aloe-vera.JPG",
+imageCredit:"Aloe vera plant photograph",
+chemicals:["Anthraquinones","Flavonoids","Tannins","Saponins","Phenols","Terpenoids","Carbohydrates","Polysaccharides"],
+markers:["Aloin","Aloe-emodin"],
+screening:"Positive observations reported for flavonoids, tannins, phenols, saponins, terpenoids and anthraquinone glycosides. Alkaloids and steroids were negative.",
+tlc:"Silica gel plate; barbaloin and aloe-emodin reported as marker zones.",
+rf:"Barbaloin 0.42; aloe-emodin 0.73."
+},
+
+{
+name:"Hibiscus (Roselle)",
+scientific:"Hibiscus sabdariffa L.",
+family:"Malvaceae",
+order:"Malvales",
+part:"Flower",
+image:"https://i.ebayimg.com/images/g/cXsAAOSwvuhgKk9O/s-l1200.jpg",
+imageCredit:"Roselle flower photograph",
+chemicals:["Anthocyanins","Flavonoids","Tannins","Phenols","Saponins","Terpenoids","Organic acids"],
+markers:["Cyanidin-3-O-sambubioside","Delphinidin-3-O-sambubioside"],
+screening:"Positive observations reported for flavonoids, tannins, phenols, saponins and terpenoids. Alkaloids and steroids were negative.",
+tlc:"Silica gel plate; coloured zones reported for delphinidin, cyanidin and flavonol/carotenoid constituents.",
+rf:"Delphinidin 0.56; cyanidin 0.66; flavonol/carotenoid 0.80."
+},
+
+{
+name:"Ginger",
+scientific:"Zingiber officinale Roscoe",
+family:"Zingiberaceae",
+order:"Zingiberales",
+part:"Rhizome",
+image:"https://www.mdpi.com/agronomy/agronomy-12-01168/article_deploy/html/images/agronomy-12-01168-g001.png",
+imageCredit:"Ginger rhizome photograph",
+chemicals:["Phenols","Flavonoids","Terpenoids","Tannins","Saponins","Steroids","Alkaloids"],
+markers:["6-Gingerol","Related gingerols"],
+screening:"Positive observations reported for alkaloids, flavonoids, tannins, phenols, saponins, terpenoids and steroids. Cardiac glycosides were negative.",
+tlc:"Silica-based TLC; mobile phase n-hexane : diethyl ether (40:60).",
+rf:"6-Gingerol 0.40."
+}
+
+];
+
+
+/* DISPLAY PLANT CARDS */
+
+function displayPlants(list){
+
+const grid=document.getElementById("plantGrid");
+grid.innerHTML="";
+
+if(list.length===0){
+grid.innerHTML="<p>No plants found. Try another search.</p>";
+return;
+}
+
+list.forEach(p=>{
+
+const index=plants.indexOf(p);
+
+const card=document.createElement("div");
+card.className="plant-card";
+
+const img=document.createElement("img");
+img.src=p.image;
+img.alt=p.name+" photograph";
+img.loading="lazy";
+
+img.onerror=function(){
+this.onerror=null;
+this.src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=700&q=80";
+};
+
+const info=document.createElement("div");
+info.className="plant-info";
+
+const title=document.createElement("h3");
+title.textContent=p.name;
+
+const scientific=document.createElement("div");
+scientific.className="scientific";
+scientific.textContent=p.scientific;
+
+const family=document.createElement("p");
+family.innerHTML="<b>Family:</b> "+p.family;
+
+const part=document.createElement("p");
+part.innerHTML="<b>Plant part:</b> "+p.part;
+
+const button=document.createElement("button");
+button.textContent="Explore Plant →";
+button.onclick=function(){showDetails(index);};
+
+const credit=document.createElement("small");
+credit.className="image-credit";
+credit.textContent=p.imageCredit+" (external image source)";
+
+info.append(title,scientific,family,part,button);
+card.append(img,info,credit);
+grid.appendChild(card);
+
+});
+
+}
+
+
+/* PLANT SEARCH */
+
+function searchPlants(){
+
+const query=document.getElementById("searchInput").value.toLowerCase().trim();
+
+const results=plants.filter(p=>{
+
+const searchable=[
+p.name,p.scientific,p.family,p.order,p.part,
+...p.chemicals,...p.markers
+].join(" ").toLowerCase();
+
+return searchable.includes(query);
+
+});
+
+displayPlants(results);
+
+}
+
+
+/* PLANT DETAILS */
+
+function showDetails(index){
+
+const p=plants[index];
+const box=document.getElementById("plantDetails");
+
+box.style.display="block";
+
+box.innerHTML=`
+<h3>🌿 ${p.name}</h3>
+<p><b>Scientific name:</b> <i>${p.scientific}</i></p>
+<p><b>Family:</b> ${p.family}</p>
+<p><b>Order:</b> ${p.order}</p>
+<p><b>Plant part:</b> ${p.part}</p>
+<p><b>Phytochemicals:</b> ${p.chemicals.join(", ")}</p>
+<p><b>Marker compounds:</b> ${p.markers.join(", ")}</p>
+<p><b>Preliminary screening:</b> ${p.screening}</p>
+<p><b>TLC characteristics:</b> ${p.tlc}</p>
+<p><b>Reported Rf values:</b> ${p.rf}</p>
+<p><small>These Rf values are reproduced from the project information and should be checked against original laboratory records.</small></p>
+<button onclick="closeDetails()">Close Details</button>
+`;
+
+box.scrollIntoView({behavior:"smooth",block:"start"});
+
+}
+
+function closeDetails(){
+document.getElementById("plantDetails").style.display="none";
+}
+
+
+/* GEMINI AI CHAT CONNECTION */
+
+let requestInProgress=false;
+
+function addChatMessage(sender,message){
+
+const output=document.getElementById("chatOutput");
+const row=document.createElement("div");
+row.className="chat-message";
+
+const label=document.createElement("b");
+label.textContent=sender+": ";
+
+const content=document.createElement("span");
+content.textContent=message;
+
+row.append(label,content);
+output.appendChild(row);
+output.scrollTop=output.scrollHeight;
+
+}
+
+function botanicalResponse(data){
+
+requestInProgress=false;
+
+const button=document.getElementById("sendButton");
+button.disabled=false;
+button.textContent="Send";
+
+if(data && data.answer){
+addChatMessage("Botanical AI",data.answer);
+}
+else if(data && data.error){
+addChatMessage("Botanical AI","Error: "+data.error);
+}
+else{
+addChatMessage("Botanical AI","I received an unexpected response. Please try again.");
+}
+
+}
+
+function sendMessage(){
+
+if(requestInProgress)return;
+
+const input=document.getElementById("chatInput");
+const question=input.value.trim();
+
+if(!question)return;
+
+addChatMessage("You",question);
+input.value="";
+
+requestInProgress=true;
+
+const button=document.getElementById("sendButton");
+button.disabled=true;
+button.textContent="Thinking...";
+
+addChatMessage("Botanical AI","Please wait. I am preparing your answer...");
+
+const script=document.createElement("script");
+
+const url=BOTANICAL_API_URL+
+"?callback=botanicalReplyHandler"+
+"&message="+encodeURIComponent(question)+
+"&t="+Date.now();
+
+let completed=false;
+
+const timeout=setTimeout(function(){
+
+if(!completed){
+completed=true;
+requestInProgress=false;
+button.disabled=false;
+button.textContent="Send";
+script.remove();
+addChatMessage("Botanical AI","The request timed out. Please check your internet connection and try again.");
+}
+
+},45000);
+
+window.botanicalReplyHandler=function(data){
+
+if(completed)return;
+
+completed=true;
+clearTimeout(timeout);
+script.remove();
+botanicalResponse(data);
+
+};
+
+script.onerror=function(){
+
+if(completed)return;
+
+completed=true;
+clearTimeout(timeout);
+requestInProgress=false;
+button.disabled=false;
+button.textContent="Send";
+
+script.remove();
+
+addChatMessage("Botanical AI","Could not connect to the AI service. Check that your Apps Script deployment is available to anyone and try again.");
+
+};
+
+script.src=url;
+document.body.appendChild(script);
+
+}
+
+
+/* INITIALIZE WEBSITE */
+
+displayPlants(plants);
+
+</script>
+
+</body>
+</html>
